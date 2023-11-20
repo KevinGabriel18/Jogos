@@ -1,0 +1,182 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+void escolher(char jogo[][3], char esc){
+	
+	int col, lin;
+	printf("Escolha a coluna que quer jogar de 0 a 2\n");
+	  scanf("%d", &col);
+    printf("Escolha a linha que quer jogar de 0 a 2\n");
+	  scanf("%d", &lin);
+	  jogo[col][lin];
+	printf("Voce escolheu a coluna %d e linha %d\n", col, lin);
+	jogo[col][lin]= esc;
+	
+}
+
+void imprimir(char jogo[][3]){
+	int x=0;
+	while(x<3){
+		int y=0;
+		while(y<3){
+		printf("%c | ", jogo[x][y]);
+		y++;
+		}
+		x++;
+		printf("\n");
+	}
+	
+}
+
+void limpar (char jogo[][3]){
+	int x;
+	while(x<3){
+		int y=0;
+		while(y<3){
+		jogo[x][y] = ' ';
+		y++;
+		}
+		x++;
+	}
+}
+
+int verifica(char jogo[][3]){
+	int i=0;
+	while(i<3){
+	if(jogo[0][0]=='x' && jogo[0][1]=='x' && jogo[0][2]=='x' ||
+	   jogo[1][0]=='x' && jogo[1][1]=='x' && jogo[1][2]=='x' ||
+	   jogo[2][0]=='x' && jogo[2][1]=='x' && jogo[2][2]=='x'){
+	   	printf("Jogador x ganhou");
+	   	return 1;
+	   }
+	i++;
+	}
+	
+	i=0;
+	while(i<3){
+	if(jogo[0][0]=='o' && jogo[0][1]=='o' && jogo[0][2]=='o' ||
+	   jogo[1][0]=='o' && jogo[1][1]=='o' && jogo[1][2]=='o' ||
+	   jogo[2][0]=='o' && jogo[2][1]=='o' && jogo[2][2]=='o'){
+	   	printf("Jogador o ganhou");
+	   	return 1;
+	   }
+	i++;
+	}
+	
+	i=0;
+	while(i<3){
+	if(jogo[0][0]=='x' && jogo[1][1]=='x' && jogo[2][2]=='x' ||
+	   jogo[0][2]=='x' && jogo[1][1]=='x' && jogo[2][0]=='x'){
+	   	printf("Jogador x ganhou");
+	   	return 1;
+	   }
+	i++;
+	}
+	
+	i=0;
+	while(i<3){
+	if(jogo[0][0]=='o' && jogo[1][1]=='o' && jogo[2][2]=='o' ||
+	   jogo[0][2]=='o' && jogo[1][1]=='o' && jogo[2][0]=='o'){
+	   	printf("Jogador 0 ganhou");
+	   	return 1;
+	   }
+	i++;
+	}
+	
+	i=0;
+	while(i<3){
+	if(jogo[0][0]=='x' && jogo[1][0]=='x' && jogo[2][0]=='x' ||
+	   jogo[0][1]=='x' && jogo[1][1]=='x' && jogo[2][1]=='x' ||
+	   jogo[0][2]=='x' && jogo[1][2]=='x' && jogo[2][2]=='x'){
+	   	printf("Jogador x ganhou");
+	   	return 1;
+	   }
+	i++;
+	}
+	
+	i=0;
+	while(i<3){
+	if(jogo[0][0]=='o' && jogo[1][0]=='o' && jogo[2][0]=='o' ||
+	   jogo[0][1]=='o' && jogo[1][1]=='o' && jogo[2][1]=='o' ||
+	   jogo[0][2]=='o' && jogo[1][2]=='o' && jogo[2][2]=='o'){
+	   	printf("Jogador o ganhou");
+	   	return 1;
+	   }
+	i++;
+	}
+	
+}
+
+int main(int argc, char *argv[]) {
+	
+	char jogo[3][3];
+	char esc;
+	
+	int g=0, p=0;
+	
+	do{
+		limpar (jogo);
+		printf("Escolha x ou o\n");
+		scanf("%s", &esc);
+		printf("Jogador 1 escolheu %c\n", esc);
+		
+		escolher(jogo, esc);
+		imprimir(jogo);
+		
+		switch(esc){
+			case 'x':
+			esc = 'o';
+			break;
+			
+			case 'o':
+				esc = 'x';
+				break;
+		}
+		
+	printf("\n Jogador 2 seu simbolo e %c\n", esc);
+	escolher(jogo, esc);
+	imprimir(jogo);	
+	
+	int i=0;
+	
+	int z=6;
+	while(i<=z){
+		switch(esc){
+			case 'x':
+			esc = 'o';
+			break;
+			
+			case 'o':
+				esc = 'x';
+				break;
+		}
+		
+	
+	printf("\n Vez do %c\n", esc);
+	escolher(jogo, esc);
+	imprimir(jogo);
+	
+	g= verifica(jogo);
+	if(g==1){
+		break;
+	}
+	i++;
+}
+	if(g==1|| i==6){
+		printf("\nDeseja reiniciar? 1: Sim 2: Nao\n");
+		scanf("%d", &g);
+		
+	}
+	switch(p){
+		system("cls");
+		break;
+		default:
+			break;
+			
+	}
+	
+		
+	}while(p==1);
+		
+
+}
